@@ -48,6 +48,7 @@ public class AddTimelineController extends AbstractController{
 
     public AddTimelineController(ModelAccess modelAccess) {
         super(modelAccess);
+       
     }
     
     public void addTheTimeline(ActionEvent e){
@@ -68,7 +69,7 @@ public class AddTimelineController extends AbstractController{
             if(!isTestMode) {
 	            // Window closes itself after user clicks the Save button
 	            final Node source = (Node) e.getSource();
-	            final Stage stage = (Stage) source.getScene().getWindow();
+	            final Stage stage = (Stage) saveButton.getScene().getWindow();
 	            stage.close();
             }
         } catch (RuntimeException exception) {
@@ -110,14 +111,14 @@ public class AddTimelineController extends AbstractController{
     	this.isTestMode = isTestMode;
     }
 	
-
+    
     // Private methods
     // Checks for any invalid or missing information and throws and exception if found
     private void errorCheck() {
     	boolean errorFound = true;
     	String errorMessage = "";
 
-    	if(title.isEmpty()){
+    	if(title.trim().isEmpty()){
     		errorMessage = "Please select a title";
     	} else if(start == null){
     		errorMessage = "Please select start date";
@@ -133,4 +134,5 @@ public class AddTimelineController extends AbstractController{
     		throw new RuntimeException(errorMessage);
     	}
     } 
+
 }

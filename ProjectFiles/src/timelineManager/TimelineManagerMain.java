@@ -25,8 +25,13 @@ public class TimelineManagerMain extends Application {
     	
         ViewFactory viewFactory=ViewFactory.defaultFactory;
         Scene scene = viewFactory.getMainScene();
-        stage.setResizable(false);
+        stage.setMaxWidth(1200);
+        stage.setMinWidth(640);
+        stage.setMinHeight(580);
+        stage.setMaxHeight(640);
+        stage.setResizable(true);
         stage.setTitle("Group 2 Timeline Manager Project");
+       // "file:./TimelineManager/ProjectFiles/src/timelineManager/resource/image/icon.png"
         stage.getIcons().add(new Image("file:../TimelineManager/ProjectFiles/src/timelineManager/resource/image/icon.png"));
         stage.setScene(scene);
         stage.show();

@@ -17,11 +17,13 @@ public class Timeline{
 	private Color color;
 	public ObservableList<Task> taskList= FXCollections.observableArrayList();
 	private static long counter = 1;
-	
+        public Color[] Colorbar = new Color[4];
 	/**
 	 * The constructor adds a unique ID to each created object of the class.
 	 */
 	public Timeline(){
+		title = new SimpleStringProperty();
+		description = new SimpleStringProperty();
 		this.id = counter++;
 	}
 	
@@ -33,15 +35,14 @@ public class Timeline{
 		this.endTime = endTime;
 		
 		// Temp color
-		color = Color.rgb(200,175,160);
+		color = TimelineModel.red;
 	}
 	
 	/*timelineManager.model.Task*/
 	public void addTask(Task t){
                 if(t!=null)
                     taskList.add(t);
-                
-		
+                setTaskColor(t);	
 	}
 	public void editTask(Task t){
 		
@@ -56,7 +57,7 @@ public class Timeline{
 		return id;
 	}
 	public void setTitle(String title){
-		this.title.set(title); 
+		this.title.set(title);
 	}
 	public String getTitle(){
 		return title.get();
@@ -87,6 +88,7 @@ public class Timeline{
 	public Color getColor(){
 		return color;
 	}
-	
+	public void setTaskColor(Task task){
+            task.setColor(Colorbar[taskList.indexOf(task)%4]); 
+        }
 }
-
