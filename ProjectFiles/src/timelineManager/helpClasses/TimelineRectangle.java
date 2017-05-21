@@ -2,52 +2,48 @@ package timelineManager.helpClasses;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import timelineManager.TimelineManagerMain;
-import timelineManager.controller.MainWindowController;
-import timelineManager.model.Task;
 import timelineManager.model.Timeline;
 
 /**
- * A class for printing a Timeline in a grid pane.
+ * A class for creating the timeline Rectangle.
+ * It adds the timeline to a AnchorPane with rectangle with text of title of the timeline in top of it.
  */
-public class TimelineRectangle extends StackPane
+public class TimelineRectangle extends AnchorPane
 {
-    
     private Timeline timeline;
     private Rectangle rectangle;
     private Label text;
     private boolean leftCutoff = false;  // if timeline stretches outside the screen the cutoff booleans is true.
     private boolean rightCutoff = false;
     
-
+    /**
+     * Constructor for creating the timeline Rectangle
+     * @param inputTimeline the timeline to be created as rectangle
+     */
     public TimelineRectangle(Timeline inputTimeline)
     {
         timeline = inputTimeline;
         rectangle = new Rectangle(200,10);
         rectangle.setFill(timeline.getColor());
-        rectangle.setOpacity(0.6);
+        rectangle.setOpacity(1);
         rectangle.setArcWidth(10);
         rectangle.setArcHeight(10);
         text = new Label("");
         text.setFont(new Font(10));
         text.setText(timeline.getTitle());
-        //text.setTextAlignment(TextAlignment.CENTER);
         text.setTextFill(Color.rgb(255, 255, 255));
-        setAlignment(Pos.TOP_CENTER);
         text.setAlignment(Pos.TOP_CENTER);
-        
         text.setLayoutY(20);
         
         getChildren().add(rectangle);
         getChildren().add(text);
-       
     }
+    
+    // Getters and Setters
     
     public Label getText()
     {
@@ -94,7 +90,7 @@ public class TimelineRectangle extends StackPane
         return rectangle;
     }
     
-    public StackPane getStackPane()
+    public AnchorPane getPane()
     {
         return this;
     }

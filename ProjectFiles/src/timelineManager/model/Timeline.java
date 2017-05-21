@@ -10,14 +10,14 @@ import javafx.scene.paint.Color;
 public class Timeline{
 	private long id;
 	private SimpleStringProperty title;
-
 	private SimpleStringProperty description;
 	private LocalDate startTime;
 	private LocalDate endTime;
 	private Color color;
 	public ObservableList<Task> taskList= FXCollections.observableArrayList();
 	private static long counter = 1;
-        public Color[] Colorbar = new Color[4];
+	public Color[] colorbar = new Color[4];
+	
 	/**
 	 * The constructor adds a unique ID to each created object of the class.
 	 */
@@ -33,20 +33,17 @@ public class Timeline{
 		this.description =  new SimpleStringProperty(description);
 		this.startTime = startTime;
 		this.endTime = endTime;
-		
-		// Temp color
-		color = TimelineModel.red;
 	}
 	
 	/*timelineManager.model.Task*/
 	public void addTask(Task t){
                 if(t!=null)
-                    taskList.add(t);
+				{
+					taskList.add(t);
+				}
                 setTaskColor(t);	
 	}
-	public void editTask(Task t){
-		
-	}
+	
 	public void deleteTask(Task t){
 		taskList.remove(t);
 	}
@@ -89,6 +86,6 @@ public class Timeline{
 		return color;
 	}
 	public void setTaskColor(Task task){
-            task.setColor(Colorbar[taskList.indexOf(task)%4]); 
+            task.setColor(colorbar[taskList.indexOf(task)%4]);
         }
 }
